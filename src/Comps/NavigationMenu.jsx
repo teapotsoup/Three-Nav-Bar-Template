@@ -33,46 +33,44 @@ const Highlight = styled.span`
   transition: left 0.5s ease;
 `;
 
+const routes = [
+    { path: '/', label: 'Home', position: 18 },
+    { path: '/About', label: 'About', position: 108 },
+    { path: '/Product', label: 'Product', position: 205 },
+    { path: '/Services', label: 'Services', position: 307 },
+    { path: '/Contact', label: 'Contact', position: 409 },
+];
+
 const NavigationMenu = () => {
     const { pathname } = useLocation();
-    const [highlightPosition, setHighlightPosition] = useState(18);
+    const [highlightRoute, setHighlightRoute] = useState({ path: '/', label: 'Home', position: 18 });
 
     useEffect(() => {
-        switch (pathname) {
-            case '/':
-                setHighlightPosition(18);
-                break;
-            case '/About':
-                setHighlightPosition(108);
-                break;
-            case '/Product':
-                setHighlightPosition(205);
-                break;
-            case '/Services':
-                setHighlightPosition(307);
-                break;
-            case '/Contact':
-                setHighlightPosition(409);
-                break;
-            default:
-                setHighlightPosition(18); // 기본값 설정
-                break;
-        }
-    }, [pathname]);
+        if(highlightRoute.path !== pathname){
+            const timer = setInterval(() => {
+                const route = routes.find((route) => route.path === pathname);
+                setHighlightRoute(route ? route : { path: '/', label: 'Home', position: 18 });
+            }, 1000);
 
-    const handleHover = useCallback((left) => {
-        setHighlightPosition(left);
+            return () => {
+                clearInterval(timer);
+            };
+        }
+    }, [highlightRoute,pathname]);
+
+    const handleHover = useCallback((route) => {
+        setHighlightRoute(route);
     }, []);
 
 
     return (
         <Nav>
-            <NavLink to="/" onMouseEnter={() => handleHover(18)}>Home</NavLink>
-            <NavLink to="/About" onMouseEnter={() => handleHover(108)}>About</NavLink>
-            <NavLink to="/Product" onMouseEnter={() => handleHover(205)}>Product</NavLink>
-            <NavLink to="/Services" onMouseEnter={() => handleHover(307)}>Services</NavLink>
-            <NavLink to="/Contact" onMouseEnter={() => handleHover(409)}>Contact</NavLink>
-            <Highlight style={{ left: `${highlightPosition}px`, width: '90px' }} />
+            {routes.map((route) => (
+                <NavLink key={route.path} to={route.path} onMouseEnter={() => handleHover(route)}>
+                    {route.label}
+                </NavLink>
+            ))}
+            <Highlight style={{ left: `${highlightRoute.position}px`, width: '90px' }} />
         </Nav>
     );
 };
