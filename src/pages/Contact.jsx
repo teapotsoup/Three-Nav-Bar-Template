@@ -1,9 +1,11 @@
-import NavigationMenu from "../Comps/NavigationMenu.jsx";
+import NavigationMenu1 from "../Comps/NavigationMenu1.jsx";
+import NavigationMenu2 from "../Comps/NavigationMenu2.jsx";
 
 const Contact = () => {
     return (
         <>
-            <NavigationMenu/>
+            {/*<NavigationMenu1/>*/}
+            <NavigationMenu2/>
             <h1>컨택트</h1>
             <p>컨택트들</p>
         </>

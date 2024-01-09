@@ -5,8 +5,9 @@ import {Link, useLocation} from 'react-router-dom';
 const Nav = styled.nav`
   position: relative;
   width: 524px;
-  height: 50px;
-  background: #222;
+  height: 50px; // #eceff1
+  background: #3e3e3e;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -41,7 +42,7 @@ const routes = [
     { path: '/Contact', label: 'Contact', position: 409 },
 ];
 
-const NavigationMenu = () => {
+const NavigationMenu1 = () => {
     const { pathname } = useLocation();
     const [highlightRoute, setHighlightRoute] = useState({ path: '/', label: 'Home', position: 18 });
 
@@ -75,4 +76,4 @@ const NavigationMenu = () => {
     );
 };
 
-export default NavigationMenu;
+export default NavigationMenu1;
