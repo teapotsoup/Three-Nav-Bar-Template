@@ -9,21 +9,6 @@
     --sect5: #8946ff;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    transition: all 0.5s ease 0s;
-    font-family: 'Varela Round', cursive;
-}
-
 body:after {
     content: "Progress Bar only in Chrome";
     position: fixed;

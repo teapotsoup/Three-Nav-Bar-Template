@@ -5,9 +5,9 @@ import {Link, useLocation} from 'react-router-dom';
 const Nav = styled.nav`
   position: relative;
   width: 524px;
-  height: 50px; // #eceff1
+  height: 50px; 
   background: #3e3e3e;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -47,6 +47,7 @@ const NavigationMenu1 = () => {
     const [highlightRoute, setHighlightRoute] = useState({ path: '/', label: 'Home', position: 18 });
 
     useEffect(() => {
+        // 현재 하이라이트된 탭과 현재 경로가 다른 경우 1초 후 탭이 원래 경로에 해당하는 탭으로 돌아감.
         if(highlightRoute.path !== pathname){
             const timer = setInterval(() => {
                 const route = routes.find((route) => route.path === pathname);
@@ -62,7 +63,6 @@ const NavigationMenu1 = () => {
     const handleHover = useCallback((route) => {
         setHighlightRoute(route);
     }, []);
-
 
     return (
         <Nav>

@@ -13,7 +13,7 @@ const Nav = styled.nav`
     box-shadow: 0 10px 40px rgba(159, 162, 177, .8);
 `;
 
-const CustomNavLink = styled(Link)`
+const NavLink = styled(Link)`
     padding: 20px;
     text-decoration: none;
     transition: .3s;
@@ -69,6 +69,12 @@ const routes = [
     { path: '/Contact', label: 'Contact', color: 'rebeccapurple' },
 ];
 
+// { path: '#', label: 'Home', color: 'orange' },
+// { path: '#', label: 'About', color: 'green' },
+// { path: '#', label: 'Product', color: 'blue' },
+// { path: '#', label: 'Services', color: 'red' },
+// { path: '#', label: 'Contact', color: 'rebeccapurple' },
+
 const NavigationMenu2 = () => {
     const { pathname } = useLocation();
     const [indicatorStyle, setIndicatorStyle] = useState({});
@@ -95,17 +101,16 @@ const NavigationMenu2 = () => {
     };
 
     return (
-        <Nav className="nav">
+        <Nav>
             {routes.map((route) => (
-                <CustomNavLink
+                <NavLink
                     key={route.path}
                     className={isActive(route.path) ? 'nav-item is-active' : 'nav-item'}
-                    color="orange"
                     onClick={(e) => handleIndicator(e.target, route.color)}
                     to={route.path}
                 >
                     {route.label}
-                </CustomNavLink>
+                </NavLink>
             ))}
             <NavIndicator style={indicatorStyle}></NavIndicator>
         </Nav>

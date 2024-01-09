@@ -1,4 +1,4 @@
-import NavigationMenu1 from "../Comps/NavigationMenu1.jsx";
+// import NavigationMenu1 from "../Comps/NavigationMenu1.jsx";
 import NavigationMenu2 from "../Comps/NavigationMenu2.jsx";
 import NavigationMenu3 from "../Comps/NavigationMenu3.jsx";
 
