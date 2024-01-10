@@ -1,5 +1,20 @@
 import "./NavigationMenu3.css"
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import NavigationMenu1 from "./NavigationMenu1.jsx";
+import NavigationMenu2 from "./NavigationMenu2.jsx";
+
+const progress = keyframes`
+    100% { width: 100%; }
+`;
+
+const colorize = keyframes`
+    from {
+        background-position: 100% 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+`;
 
 const Header = styled.header`
     width: 100%;
@@ -20,15 +35,15 @@ const Nav = styled.nav`
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 20vw;
         width: 20%;
         height: 100%;
         z-index: -1;
         background: linear-gradient(90deg, var(--sect1) 0 calc(20vw - 3px), var(--sect2) 0 calc(40vw - 6px), var(--sect3) 0 calc(60vw - 10px), var(--sect4) 0 calc(80vw - 13px), var(--sect5) 0 100vw);
-        animation: progress linear;
-        animation-timeline: scroll(root);
+        animation: ${progress} linear;
+        animation-timeline: scroll(root); // 해결 방법?
     }
 `;
+
 
 const NavLink = styled.a`
     color: #fff;
@@ -51,9 +66,8 @@ const NavLink = styled.a`
         background: linear-gradient(90deg, var(--clr) 0 50%, var(--black) 0 100%);
         background-size: 200%;
         background-position: 100% 0;
-        animation: colorize 0.5s ease 0s;
-        animation-fill-mode: forwards;
-        transition: all 0.5s ease 0s;
+        animation: ${colorize} 0.5s ease forwards;
+        transition: all 0.5s ease;
     }
 
     &:nth-child(1):hover {
@@ -123,7 +137,6 @@ const Scroller = styled.div`
         left: 13px
     }
     > span + span {
-        top: inherit;
         top: 70px;
     }
     > span:before {
@@ -174,12 +187,12 @@ function NavigationMenu3() {
 
             <Section id="css">
                 <h2>CSS</h2>
-                <p>Cascading Style Sheets</p>
+                <NavigationMenu1 NavBackGroundColor={'#bb9568'}  NavTabFontSize={'0.3em'} HighLightTabWidth={'1vw'} HighLightTabColorOne={'#ff9900'} HighLightTabColorTwo={'lightgray'} />
             </Section>
 
             <Section id="html">
                 <h2>HTML</h2>
-                <p>HyperText Markup Language</p>
+                <NavigationMenu2/>
             </Section>
 
             <Section id="js">

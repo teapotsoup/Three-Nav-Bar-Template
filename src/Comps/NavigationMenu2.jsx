@@ -62,30 +62,35 @@ const NavIndicator = styled.span`
 `;
 
 const routes = [
-    { path: '/', label: 'Home', color: 'orange' },
-    { path: '/About', label: 'About', color: 'green' },
-    { path: '/Product', label: 'Product', color: 'blue' },
-    { path: '/Services', label: 'Services', color: 'red' },
-    { path: '/Contact', label: 'Contact', color: 'rebeccapurple' },
+    { path: '#', label: 'Me', color: 'orange' },
+{ path: '#', label: 'Life', color: 'green' },
+{ path: '#', label: 'Hobby', color: 'blue' },
+{ path: '#', label: 'Moods', color: 'red' },
+{ path: '#', label: 'Foods', color: 'rebeccapurple' },
+    // { path: '/', label: 'Me', color: 'orange' },
+    // { path: '/Life', label: 'Life', color: 'green' },
+    // { path: '/Hobby', label: 'Hobby', color: 'blue' },
+    // { path: '/Moods', label: 'Moods', color: 'red' },
+    // { path: '/Foods', label: 'Foods', color: 'rebeccapurple' },
 ];
 
-// { path: '#', label: 'Home', color: 'orange' },
-// { path: '#', label: 'About', color: 'green' },
-// { path: '#', label: 'Product', color: 'blue' },
-// { path: '#', label: 'Services', color: 'red' },
-// { path: '#', label: 'Contact', color: 'rebeccapurple' },
+// { path: '#', label: 'Me', color: 'orange' },
+// { path: '#', label: 'Life', color: 'green' },
+// { path: '#', label: 'Hobby', color: 'blue' },
+// { path: '#', label: 'Moods', color: 'red' },
+// { path: '#', label: 'Foods', color: 'rebeccapurple' },
 
 const NavigationMenu2 = () => {
     const { pathname } = useLocation();
     const [indicatorStyle, setIndicatorStyle] = useState({});
 
-    useEffect(() => {
-        const activeColor = routes.find(route => route.path === pathname)?.color || 'orange';
-        const activeItem = document.querySelector('.is-active');
-        if (activeItem) {
-            handleIndicator(activeItem, activeColor);
-        }
-    }, [pathname]);
+    // useEffect(() => {
+    //     const activeColor = routes.find(route => route.path === pathname)?.color || 'orange';
+    //     const activeItem = document.querySelector('.is-active');
+    //     if (activeItem) {
+    //         handleIndicator(activeItem, activeColor);
+    //     }
+    // }, [pathname]);
 
     const isActive = (to) => {
         return to === pathname;

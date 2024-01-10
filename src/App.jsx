@@ -1,20 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
-import About from './pages/About';
-import Home from './pages/Home';
-import Product from './pages/Product';
-import Services from "./pages/Services.jsx";
-import Contact from "./pages/Contact.jsx";
+import Life from './pages/Life.jsx';
+import Me from './pages/Me.jsx';
+import Hobby from './pages/Hobby.jsx';
+import Moods from "./pages/Moods.jsx";
+import Foods from "./pages/Foods.jsx";
 
 function App() {
-
   return (
     <>
         <Routes>
-            <Route path="/" exact={true} element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/Product" element={<Product/>} />
-            <Route path="/Services" element={<Services/>} />
-            <Route path="/Contact" element={<Contact/>} />
+            <Route path="/" exact={true} element={<Me />} />
+            <Route path="/life" element={<Life />} />
+            <Route path="/hobby" element={<Hobby/>} />
+            <Route path="/moods" element={<Moods/>} />
+            <Route path="/foods" element={<Foods/>} />
         </Routes>
     </>
   )
