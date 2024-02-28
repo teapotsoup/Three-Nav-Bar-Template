@@ -1,7 +1,6 @@
 import "./NavigationMenu3.css"
 import styled, {keyframes} from 'styled-components';
-import NavigationMenu1 from "./NavigationMenu1.jsx";
-import NavigationMenu2 from "./NavigationMenu2.jsx";
+import HoverButton from "./NavigationMenu3Btn.jsx";
 
 const progress = keyframes`
     100% { width: 100%; }
@@ -38,7 +37,7 @@ const Nav = styled.nav`
         width: 20%;
         height: 100%;
         z-index: -1;
-        background: linear-gradient(90deg, var(--sect1) 0 calc(20vw - 3px), var(--sect2) 0 calc(40vw - 6px), var(--sect3) 0 calc(60vw - 10px), var(--sect4) 0 calc(80vw - 13px), var(--sect5) 0 100vw);
+        background: linear-gradient(90deg, var(--sect1) 0  33vw , var(--sect2) 0 66vw,  var(--sect3) 0 100vw);
         animation: ${progress} linear;
         animation-timeline: scroll(root); // 해결 방법?
     }
@@ -78,12 +77,6 @@ const NavLink = styled.a`
     }
     &:nth-child(3):hover {
         --clr: var(--sect3);
-    }
-    &:nth-child(4):hover {
-        --clr: var(--sect4);
-    }
-    &:nth-child(5):hover {
-        --clr: var(--sect5);
     }
 `
 
@@ -144,7 +137,7 @@ const Scroller = styled.div`
         position: absolute;
         width: 8px;
         height: 8px;
-        border: 4px solid #fff;
+        border: 4px solid ;
         border-color: #fff #fff #fff0 #fff0;
         border-radius: 4px;
         transform: rotate(-45deg);
@@ -172,43 +165,28 @@ function NavigationMenu3() {
         <div>
             <Header>
                 <Nav>
-                    <NavLink  href={"#css"} >CSS</NavLink>
-                    <NavLink  href={"#html"} >HTML</NavLink>
-                    <NavLink href={"#js"} >JS</NavLink>
-                    <NavLink href={"#php"} >PHP</NavLink>
-                    <NavLink href={"#sql"} >SQL</NavLink>
+                    <NavLink  href={"#nav1"} >NAV1</NavLink>
+                    <NavLink  href={"#nav2"} >NAV2</NavLink>
+                    <NavLink href={"#nav3"} >NAV3</NavLink>
                 </Nav>
             </Header>
-
             <Scroller>
                 <span></span>
                 <span></span>
             </Scroller>
 
-            <Section id="css">
-                <h2>CSS</h2>
-                <NavigationMenu1 NavBackGroundColor={'#bb9568'}  NavTabFontSize={'0.3em'} HighLightTabWidth={'1vw'} HighLightTabColorOne={'#ff9900'} HighLightTabColorTwo={'lightgray'} />
+            <Section id="nav1">
+                <HoverButton path="/nav1" name={'NAV1'} />
             </Section>
 
-            <Section id="html">
-                <h2>HTML</h2>
-                <NavigationMenu2/>
+            <Section id="nav2">
+                <HoverButton path="/nav2" name={'NAV2'} />
             </Section>
 
-            <Section id="js">
-                <h2>JS</h2>
-                <p>Client-Side Scripting Language</p>
+            <Section id="nav3">
+                <HoverButton path="/nav3"  name={'NAV3'} />
             </Section>
 
-            <Section id="php">
-                <h2>PHP</h2>
-                <p>Hypertext Preprocessor</p>
-            </Section>
-
-            <Section id="sql">
-                <h2>SQL</h2>
-                <p>Structured Query Language</p>
-            </Section>
         </div>
     );
 }

@@ -1,27 +1,31 @@
 import {useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Link, useLocation} from 'react-router-dom';
+import Btn1 from "./Btn1.jsx";
+import Btn2 from "./Btn2.jsx";
+import Btn3 from "./Btn3.jsx";
+import Btn4 from "./Btn4.jsx";
 
 const Nav = styled.nav`
   position: relative;
-  width: ${props => props.NavWidth}; // 프롭스 대상
-    min-width: 800px;
-  height: ${props => props.NavHeight}; // 프롭스 대상
-  background: ${props => props.NavBackGroundColor}; // 프롭스 대상
+  width: ${props => props.$navwidth};// 프롭스 대상
+    //min-width: 800px;
+  height: ${props => props.$navheight}; // 프롭스 대상
+  background: ${props => props.$navbackgroundcolor}; // 프롭스 대상
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+    padding: 0.5vw;
 `;
 
 const NavLink = styled(Link)`
   position: relative;
-  //display: inline-block;
-  font-size: ${props => props.NavTabFontSize}; // 프롭스 대상
+  font-size: ${props => props.$navtabfontsize}; // 프롭스 대상
   color: #fff;
   text-decoration: none;
-  padding: 0 23px;
+  padding: 1vw;
   z-index: 1;
   transition: color 0.3s ease;
     display: flex;
@@ -36,32 +40,30 @@ const Highlight = styled.span`
   position: absolute;
   top: 0;
   height: 100%;
-    width: ${props => props.HighLightTabWidth};
-    min-width: 100px;
-  background:  linear-gradient(45deg, ${(props) => props.HighLightTabColorOne}, ${(props) => props.HighLightTabColorTwo});
+  width: ${props => props.$highlighttabwidth};
+    //min-width: 100px;
+  background:  linear-gradient(45deg, ${(props) => props.$highlighttabcolorone}, ${(props) => props.$highlighttabcolortwo});
   border-radius: 8px;
   transition: left 0.5s ease;
 `;
 
 const routes = [
-    { path: '/', label: 'Me', position: '5.8vw' },
-    { path: '/Life', label: 'Life',position: '15.8vw' },
-    { path: '/Hobby', label: 'Hobby', position: '26.3vw' },
-    { path: '/Moods', label: 'Moods', position: '37.8vw' },
-    { path: '/Foods', label: 'Foods', position: '49vw' },
+    { path: '/nav1', label: 'NAV1', position: '6.6vw' },
+    { path: '/nav2', label: 'NAV2',position: '18.2vw' },
+    { path: '/nav3', label: 'NAV3', position: '29.7vw' },
 ];
 
 // eslint-disable-next-line react/prop-types
-const NavigationMenu1 = ({NavWidth = '60vw', NavHeight = '50px', NavBackGroundColor = '#3e3e3e', NavTabFontSize = '1em',HighLightTabWidth='10px',HighLightTabColorOne = '#2e3192', HighLightTabColorTwo = '#1bffff' }) => {
+const NavigationMenu1 = ({navwidth = '40vw', navheight = '2vw', navbackgroundcolor = '#3e3e3e', navtabfontsize = '0.1vw',highlighttabwidth='5.5vw',highlighttabcolorone = '#2e3192', highlighttabcolortwo = '#1bffff' }) => {
     const { pathname } = useLocation();
-    const [highlightRoute, setHighlightRoute] = useState({ path: '/', label: 'Me', position: '5.8vw' });
+    const [highlightRoute, setHighlightRoute] = useState({ path: '/', label: 'Me', position: '6.6vw' });
 
     useEffect(() => {
         // 현재 하이라이트된 탭과 현재 경로가 다른 경우 1초 후 탭이 원래 경로에 해당하는 탭으로 돌아감.
         if(highlightRoute.path !== pathname){
             const timer = setInterval(() => {
                 const route = routes.find((route) => route.path === pathname);
-                setHighlightRoute(route ? route : { path: '/', label: 'Me', position: '5.8vw' });
+                setHighlightRoute(route ? route : { path: '/', label: 'Me', position: '6.6vw' });
             }, 1000);
 
             return () => {
@@ -75,16 +77,24 @@ const NavigationMenu1 = ({NavWidth = '60vw', NavHeight = '50px', NavBackGroundCo
     }, []);
 
     return (
-        <NavWrapper>
-            <Nav NavWidth = {NavWidth} NavHeight = {NavHeight} NavBackGroundColor = {NavBackGroundColor} >
-                {routes.map((route) => (
-                    <NavLink NavTabFontSize={NavTabFontSize} key={route.path} to={route.path} onMouseEnter={() => handleHover(route)}>
-                        {route.label}
-                    </NavLink>
-                ))}
-                <Highlight HighLightTabWidth={HighLightTabWidth} HighLightTabColorOne={HighLightTabColorOne} HighLightTabColorTwo={HighLightTabColorTwo} style={{ left: `${highlightRoute.position}` }} />
-            </Nav>
-        </NavWrapper>
+        <>
+            <NavWrapper>
+                <Nav $navwidth = {navwidth} $navheight = {navheight} $navbackgroundcolor = {navbackgroundcolor} >
+                    {routes.map((route) => (
+                        <NavLink navtabfontsize={navtabfontsize} key={route.path} to={route.path} onMouseEnter={() => handleHover(route)}>
+                            {route.label}
+                        </NavLink>
+                    ))}
+                    <Highlight $highlighttabwidth={highlighttabwidth} $highlighttabcolorone={highlighttabcolorone} $highlighttabcolortwo={highlighttabcolortwo} style={{ left: `${highlightRoute.position}` }} />
+                </Nav>
+            </NavWrapper>
+
+            <Btn1>Hover Me</Btn1>
+            <Btn1 rounded>Hover Me</Btn1>
+            <Btn2/>
+            <Btn3/>
+            <Btn4/>
+        </>
 
     );
 };

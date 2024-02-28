@@ -23,28 +23,22 @@ body {
     transition: all 0.5s ease 0s;
 }
 
-#css {
+#nav1 {
     background-color: var(--sect1);
 }
 
-#html {
+#nav2 {
     background-color: var(--sect2);
 }
 
-#js {
+#nav3 {
     background-color: var(--sect3);
 }
 
-#php {
+#nav4 {
     background-color: var(--sect4);
 }
 
-#sql {
+#nav5 {
     background-color: var(--sect5);
 }
-
-
-/*@media screen and (max-width: 580px) {*/
-/*    nav a { font-size: 1.25rem; line-height: 2rem; }*/
-/*    .scroller:after { content: "";}*/
-/*}*/
