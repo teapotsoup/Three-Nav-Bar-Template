@@ -1,6 +1,9 @@
 import "./NavigationMenu3.css"
 import styled, {keyframes} from 'styled-components';
-import HoverButton from "./NavigationMenu3Btn.jsx";
+
+import Btn1 from "./Btn1.jsx";
+import Btn2 from "./Btn2.jsx";
+import Btn3 from "./Btn3.jsx";
 
 const progress = keyframes`
     100% { width: 100%; }
@@ -176,15 +179,13 @@ function NavigationMenu3() {
             </Scroller>
 
             <Section id="nav1">
-                <HoverButton path="/nav1" name={'NAV1'} />
+                <Btn1 path="/nav1" name = "NAV1"/>
             </Section>
-
             <Section id="nav2">
-                <HoverButton path="/nav2" name={'NAV2'} />
+                <Btn2 path="/nav2" name = "NAV2"/>
             </Section>
-
             <Section id="nav3">
-                <HoverButton path="/nav3"  name={'NAV3'} />
+                <Btn3 path="/nav3" name = "NAV3"/>
             </Section>
 
         </div>

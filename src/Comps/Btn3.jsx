@@ -1,108 +1,81 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import {useNavigate} from "react-router-dom";
 
-// Styled Components
-const Nav = styled.nav`
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- background-color: black;
- height: 100vh;
+// CSS 애니메이션 정의
+const glowing = keyframes`
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
 `;
 
-const Ul = styled.ul`
- list-style-type: none;
- margin: 0;
- padding: 0;
-`;
-
-const Li = styled.li`
- --c: goldenrod;
- color: var(--c);
- font-size: 16px;
- border: 0.3em solid var(--c);
- border-radius: 0.5em;
- width: 12em;
- height: 3em;
- text-transform: uppercase;
+// 스타일링된 컴포넌트 정의
+const GlowButton = styled.button`
+ font-size:2vw;
  font-weight: bold;
- font-family: sans-serif;
- letter-spacing: 0.1em;
- text-align: center;
- line-height: 3em;
+ width: 20vw;
+ height: 20vw;
+ outline: none;
+ color: white;
+ border: 5px solid white;
+ background: transparent;
+ cursor: pointer;
  position: relative;
- overflow: hidden;
- z-index: 1;
- transition: 0.5s;
- margin: 1em;
-
- &:hover {
-    color: black;
+ z-index: 0;
+ border-radius: 10px;
+    
+ &:before {
+    content: '';
+    background: linear-gradient(45deg, #FFC0CB, #FFA500, #800080, #008000, #00FFFF, #0000FF, #000080, #FFD700, #A52A2A);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: ${glowing} 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
  }
 
- &:hover span {
-    transform: translateY(0) scale(2);
- }
-`;
-
-const Span = styled.span`
- position: absolute;
- width: 25%;
- height: 100%;
- background-color: var(--c);
- transform: translateY(150%);
- border-radius: 50%;
- transition: 0.5s;
- z-index: -1;
-
- ${Li}:hover & {
-    transform: translateY(0) scale(2);
+ &:active {
+    color: white;
  }
 
- &:nth-child(1) {
-    left: calc((1 - 1) * 25%);
-    transition-delay: calc((1 - 1) * 0.1s);
+ &:active:after {
+    background: transparent;
  }
 
- &:nth-child(2) {
-    left: calc((2 - 1) * 25%);
-    transition-delay: calc((2 - 1) * 0.1s);
+ &:hover:before {
+    opacity: 1;
  }
 
- &:nth-child(3) {
-    left: calc((3 - 1) * 25%);
-    transition-delay: calc((3 - 1) * 0.1s);
- }
-
- &:nth-child(4) {
-    left: calc((4 - 1) * 25%);
-    transition-delay: calc((4 - 1) * 0.1s);
+ &:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
  }
 `;
 
-// React Component
-const Btn3 = () => {
+// eslint-disable-next-line react/prop-types
+const Btn3 = ({name, path}) => {
+    const navigate = useNavigate();
+
+    const BtnHandler = (path) => {
+        navigate(path);
+    }
     return (
-        <Nav>
-            <Ul>
-                <Li>
-                    home
-                    <Span /><Span /><Span /><Span />
-                </Li>
-                <Li>
-                    products
-                    <Span /><Span /><Span /><Span />
-                </Li>
-                <Li>
-                    services
-                    <Span /><Span /><Span /><Span />
-                </Li>
-                <Li>
-                    contact
-                    <Span /><Span /><Span /><Span />
-                </Li>
-            </Ul>
-        </Nav>
+        < >
+            <GlowButton onClick={() => BtnHandler(path)} type="button">{name}</GlowButton>
+        </>
     );
 };
 

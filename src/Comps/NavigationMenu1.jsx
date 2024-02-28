@@ -1,15 +1,10 @@
 import {useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Link, useLocation} from 'react-router-dom';
-import Btn1 from "./Btn1.jsx";
-import Btn2 from "./Btn2.jsx";
-import Btn3 from "./Btn3.jsx";
-import Btn4 from "./Btn4.jsx";
 
 const Nav = styled.nav`
   position: relative;
   width: ${props => props.$navwidth};// 프롭스 대상
-    //min-width: 800px;
   height: ${props => props.$navheight}; // 프롭스 대상
   background: ${props => props.$navbackgroundcolor}; // 프롭스 대상
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -41,7 +36,6 @@ const Highlight = styled.span`
   top: 0;
   height: 100%;
   width: ${props => props.$highlighttabwidth};
-    //min-width: 100px;
   background:  linear-gradient(45deg, ${(props) => props.$highlighttabcolorone}, ${(props) => props.$highlighttabcolortwo});
   border-radius: 8px;
   transition: left 0.5s ease;
@@ -49,12 +43,12 @@ const Highlight = styled.span`
 
 const routes = [
     { path: '/nav1', label: 'NAV1', position: '6.6vw' },
-    { path: '/nav2', label: 'NAV2',position: '18.2vw' },
-    { path: '/nav3', label: 'NAV3', position: '29.7vw' },
+    { path: '/nav2', label: 'NAV2',position: '17.2vw' },
+    { path: '/nav3', label: 'NAV3', position: '28vw' },
 ];
 
 // eslint-disable-next-line react/prop-types
-const NavigationMenu1 = ({navwidth = '40vw', navheight = '2vw', navbackgroundcolor = '#3e3e3e', navtabfontsize = '0.1vw',highlighttabwidth='5.5vw',highlighttabcolorone = '#2e3192', highlighttabcolortwo = '#1bffff' }) => {
+const NavigationMenu1 = ({navwidth = '40vw', navheight = '3vw', navbackgroundcolor = '#3e3e3e', navtabfontsize = '1vw',highlighttabwidth='5.5vw',highlighttabcolorone = '#2e3192', highlighttabcolortwo = '#1bffff' }) => {
     const { pathname } = useLocation();
     const [highlightRoute, setHighlightRoute] = useState({ path: '/', label: 'Me', position: '6.6vw' });
 
@@ -81,19 +75,13 @@ const NavigationMenu1 = ({navwidth = '40vw', navheight = '2vw', navbackgroundcol
             <NavWrapper>
                 <Nav $navwidth = {navwidth} $navheight = {navheight} $navbackgroundcolor = {navbackgroundcolor} >
                     {routes.map((route) => (
-                        <NavLink navtabfontsize={navtabfontsize} key={route.path} to={route.path} onMouseEnter={() => handleHover(route)}>
+                        <NavLink $navtabfontsize={navtabfontsize} key={route.path} to={route.path} onMouseEnter={() => handleHover(route)}>
                             {route.label}
                         </NavLink>
                     ))}
                     <Highlight $highlighttabwidth={highlighttabwidth} $highlighttabcolorone={highlighttabcolorone} $highlighttabcolortwo={highlighttabcolortwo} style={{ left: `${highlightRoute.position}` }} />
                 </Nav>
             </NavWrapper>
-
-            <Btn1>Hover Me</Btn1>
-            <Btn1 rounded>Hover Me</Btn1>
-            <Btn2/>
-            <Btn3/>
-            <Btn4/>
         </>
 
     );
